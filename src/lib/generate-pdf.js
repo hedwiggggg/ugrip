@@ -16,10 +16,7 @@ function processChords(chords) {
   let processedChords = [];
 
   const tabs = chords.split(/\[tab\]|\[\/tab\]/g);
-  const tabsAndChords = tabs.map(w => w.split(/\[ch\]|\[\/ch\]/g))
-
-  console.log(tabsAndChords);
-  
+  const tabsAndChords = tabs.map(w => w.split(/\[ch\]|\[\/ch\]/g))  
 
   for (let i = 0; i < tabsAndChords.length; i++) {
     const tabAndChords = tabsAndChords[i];
