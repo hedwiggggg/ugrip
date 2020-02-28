@@ -1,3 +1,9 @@
+This app will rip the chord data from ultimate-guitar.com and create a pdf from it.
+
+See it in action: https://hedwiggggg.github.io/ugrip/
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
