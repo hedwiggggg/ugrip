@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ugrip/static/css/main.f13db5e6.chunk.css",
+    "main.js": "/ugrip/static/js/main.2224ecbc.chunk.js",
+    "main.js.map": "/ugrip/static/js/main.2224ecbc.chunk.js.map",
+    "runtime-main.js": "/ugrip/static/js/runtime-main.5d9ba766.js",
+    "runtime-main.js.map": "/ugrip/static/js/runtime-main.5d9ba766.js.map",
+    "static/js/2.9624a991.chunk.js": "/ugrip/static/js/2.9624a991.chunk.js",
+    "static/js/2.9624a991.chunk.js.map": "/ugrip/static/js/2.9624a991.chunk.js.map",
+    "index.html": "/ugrip/index.html",
+    "precache-manifest.26897c31b7e466c0aaab0fd9fdf982d2.js": "/ugrip/precache-manifest.26897c31b7e466c0aaab0fd9fdf982d2.js",
+    "service-worker.js": "/ugrip/service-worker.js",
+    "static/css/main.f13db5e6.chunk.css.map": "/ugrip/static/css/main.f13db5e6.chunk.css.map",
+    "static/js/2.9624a991.chunk.js.LICENSE.txt": "/ugrip/static/js/2.9624a991.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5d9ba766.js",
+    "static/js/2.9624a991.chunk.js",
+    "static/css/main.f13db5e6.chunk.css",
+    "static/js/main.2224ecbc.chunk.js"
+  ]
+}
