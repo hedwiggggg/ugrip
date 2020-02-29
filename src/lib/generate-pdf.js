@@ -42,7 +42,7 @@ function processChords(chords) {
 
     processedChords.push(line);
   }
-    
+
   return processedChords;
 }
 
@@ -60,7 +60,8 @@ export default (artist, song, chords) => {
 
     defaultStyle: {
       font: 'Roboto Mono',
-      fontSize: 12
+      fontSize: 12,
+      preserveLeadingSpaces: true
     },
 
     styles: {
