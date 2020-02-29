@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6403efd8040748e3d3a4390bfeba3724",
+    "revision": "888610d92bfd02f806b8b66b7e3ed061",
     "url": "/ugrip/index.html"
   },
   {
-    "revision": "65bf96d5791c0fb87eeb",
+    "revision": "ce03a8886028c8067c40",
     "url": "/ugrip/static/css/main.f13db5e6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ugrip/static/js/2.9624a991.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "65bf96d5791c0fb87eeb",
-    "url": "/ugrip/static/js/main.244b6f7b.chunk.js"
+    "revision": "ce03a8886028c8067c40",
+    "url": "/ugrip/static/js/main.6ca59c00.chunk.js"
   },
   {
     "revision": "a4e902011b5a4eaa01a5",
