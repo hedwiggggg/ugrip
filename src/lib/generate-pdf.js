@@ -16,12 +16,15 @@ function processChords(chords) {
   let processedChords = [];
 
   const tabs = chords.split(/\[tab\]|\[\/tab\]/g);
-  const tabsAndChords = tabs.map(w => w.split(/\[ch\]|\[\/ch\]/g))  
-
-  for (let i = 0; i < tabsAndChords.length; i++) {
-    const tabAndChords = tabsAndChords[i];
+  const tabsAndChords = tabs.map(w => w.split(/\[ch\]|\[\/ch\]/g));
+  const tabsAndChordsNoBr = tabsAndChords
+    .map(w => w.map(c => c.replace(/\n/g, '')))
+    .filter(w => !(w.length === 1 && w[0].length === 1));
+  
+  for (let i = 0; i < tabsAndChordsNoBr.length; i++) {
+    const tabAndChords = tabsAndChordsNoBr[i];
     let line;
-
+    
     if (Array.isArray(tabAndChords)) {
       let inline = [];
 
@@ -46,11 +49,13 @@ function processChords(chords) {
   return processedChords;
 }
 
-export default (artist, song, chords) => {
+export default (artist, song, chords) => {  
   const fileName = `chords_${artist}_${song}`;
   const fileNameFormatted = fileName.replace(/\W/g, '-').toLocaleLowerCase();
 
   const docDefinition = {
+    pageSize: 'A4',
+
     content: [
       { text: artist, style: 'artist' },
       { text: song, style: 'song' },
@@ -60,17 +65,17 @@ export default (artist, song, chords) => {
 
     defaultStyle: {
       font: 'Roboto Mono',
-      fontSize: 12,
+      fontSize: 8,
       preserveLeadingSpaces: true
     },
 
     styles: {
       artist: {
-        fontSize: 16,
+        fontSize: 12,
         bold: true
       },
       song: {
-        fontSize: 14
+        fontSize: 10
       }
     },
 
