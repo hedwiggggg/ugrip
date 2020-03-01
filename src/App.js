@@ -36,13 +36,14 @@ function findInObject(obj, key) {
 }
 
 function App() {
-  const [uri, setUri] = useState('https://tabs.ultimate-guitar.com/tab/eli-worship/angst-geht-chords-2815367');
+  const [uri, setUri] = useState('https://tabs.ultimate-guitar.com/tab/hillsong-united/heart-of-worship-chords-1012850');
 
   const [chords, setChords] = useState('paste a ultimate-guitar.com link and press `Load Song`..');
   const [artist, setArtist] = useState('');
   const [song, setSong] = useState('');
 
   const [parsingStyle, setParsingStyle] = useState("0");
+  const [simplify, setSimplify] = useState(false);
 
   const [transposeStep, _setTransposeStep] = useState(0);
   const [transposedChords, setTransposedChords] = useState(chords);
@@ -102,7 +103,15 @@ function App() {
       if (chord) {
         try {          
           const parsedChord = parse(chord, parseOptions);          
-          const transChord = transpose(parsedChord, transposeStep);        
+          const transChord = transpose(parsedChord, transposeStep);
+
+          if (simplify) {
+            delete transChord.extended;
+            delete transChord.overridingRoot;
+            delete transChord.added;
+            delete transChord.suspended;
+          }
+
           const prettyTransChord = prettyPrint(transChord);
 
           const chordsDiff = prettyTransChord.length - chord.length;   
@@ -133,7 +142,7 @@ function App() {
     .replace(/\[\/ch\](\w)/g, '[/ch] $1');
 
     setTransposedChords(transChords);
-  }, [transposeStep, chords, parsingStyle]);
+  }, [transposeStep, chords, parsingStyle, simplify]);
 
   return (
     <>
@@ -153,6 +162,11 @@ function App() {
           TRANSPOSE ({ transposeStep })
           <button onClick={() => setTransposeStep(1)}>+</button>
         </div>
+
+        <label>
+          <input type="checkbox" checked={simplify} onChange={(e) => setSimplify(e.target.checked)} />
+          SIMPLIFY
+        </label>
       </div>
 
       <div className="sheet">

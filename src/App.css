@@ -3,6 +3,7 @@ body {
   justify-content: center;
   background: #c5c5c5;
   margin: 0;
+  font-family: monospace;
 }
 
 #root {
