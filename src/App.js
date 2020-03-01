@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { transpose } from "chord-transposer";
+import { parse, transpose, prettyPrint } from 'chord-magic'
 
 import generatePDF from './lib/generate-pdf';
 
@@ -36,14 +36,21 @@ function findInObject(obj, key) {
 }
 
 function App() {
-  const [uri, setUri] = useState('https://tabs.ultimate-guitar.com/tab/chris-renzema/youre-the-only-one-chords-2709621');
+  const [uri, setUri] = useState('https://tabs.ultimate-guitar.com/tab/eli-worship/angst-geht-chords-2815367');
 
   const [chords, setChords] = useState('paste a ultimate-guitar.com link and press `Load Song`..');
   const [artist, setArtist] = useState('');
   const [song, setSong] = useState('');
 
-  const [transposeStep, setTransposeStep] = useState(0);
+  const [parsingStyle, setParsingStyle] = useState("0");
+
+  const [transposeStep, _setTransposeStep] = useState(0);
   const [transposedChords, setTransposedChords] = useState(chords);
+
+  const setTransposeStep = (diff) => {
+    const newStep = Math.min(12, Math.max(-12, transposeStep + diff));
+    _setTransposeStep(newStep);
+  }
 
   const renderChords = useCallback(() => formatChords(transposedChords), [transposedChords]);
   const downloadPdf = useCallback(() => generatePDF(artist, song, transposedChords), [artist, song, transposedChords]);
@@ -70,18 +77,63 @@ function App() {
   }, [uri]);
 
   useEffect(() => {
+    const parseOptions = {};
+
     let transChords = chords.split(/\[ch\]|\[\/ch\]/g);
+    let regex = [];
+
+    switch(parsingStyle) {
+      case "1":
+        parseOptions.naming = 'NorthernEuropean';
+        break;
+
+      case "2":
+        parseOptions.naming = 'SouthernEuropean';
+        break;
+
+      case "0":
+      default:
+        break;
+    }
 
     for (let i = 1; i <= transChords.length; i += 2) {
-      const chord = transChords[i];
+      const chord = transChords[i];      
 
       if (chord) {
-        transChords[i] = `[ch]${transpose(chord).up(transposeStep)}[/ch]`;
+        try {          
+          const parsedChord = parse(chord, parseOptions);          
+          const transChord = transpose(parsedChord, transposeStep);        
+          const prettyTransChord = prettyPrint(transChord);
+
+          const chordsDiff = prettyTransChord.length - chord.length;   
+          const chordsDiffPos = Math.abs(chordsDiff);
+  
+          const replacer = chordsDiff >= 0 ? '-'.repeat(chordsDiff) : ' '.repeat(chordsDiffPos);
+  
+          transChords[i] = `[ch]${prettyTransChord}[/ch]`;
+          transChords[i] += replacer;
+  
+          if (chordsDiff >= 0) {
+            regex.push(replacer + ' '.repeat(chordsDiff));
+          }
+        } catch (error) {
+          console.info('failed to transpose', chord);
+        }
       }
     }
 
-    setTransposedChords(transChords.join(''));
-  }, [transposeStep, chords]);
+    regex = regex.filter(r => r.length > 1);
+    regex = [...new Set(regex)];
+
+    transChords = transChords.join('')
+    .replace(new RegExp(regex.join('|'), 'gm'), '')
+    .replace(new RegExp('-+(\\n|\\r|\\S)', 'gm'), '$1')
+    .replace(/\[\/ch\]\s\[ch\]/g, '[/ch]  [ch]')
+    .replace(/\[\/ch\]\[ch\]/g, '[/ch] [ch]')
+    .replace(/\[\/ch\](\w)/g, '[/ch] $1');
+
+    setTransposedChords(transChords);
+  }, [transposeStep, chords, parsingStyle]);
 
   return (
     <>
@@ -89,10 +141,17 @@ function App() {
         <input type="text" value={uri} onChange={e => setUri(e.target.value)} />
         <button onClick={loadSong}>LOAD SONG</button>
         <button onClick={downloadPdf}>DOWNLOAD PDF</button>
+
+        <select value={parsingStyle} onChange={(e) => setParsingStyle(e.target.value)}>
+            <option value="0">NORMAL</option>
+            <option value="1">NORTHERN EUROPEAN</option>
+            <option value="2">SOUTHERN EUROPEAN</option>
+        </select>
+
         <div className="transpose">
-          <button onClick={() => setTransposeStep(transposeStep - 1)}>-</button>
+          <button onClick={() => setTransposeStep(-1)}>-</button>
           TRANSPOSE ({ transposeStep })
-          <button onClick={() => setTransposeStep(transposeStep + 1)}>+</button>
+          <button onClick={() => setTransposeStep(1)}>+</button>
         </div>
       </div>
 
