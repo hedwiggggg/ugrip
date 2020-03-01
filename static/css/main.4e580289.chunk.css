@@ -1,2 +1,0 @@
-body{display:flex;justify-content:center;background:#c5c5c5;margin:0}#root{max-width:100%;padding:20px;box-sizing:border-box;background:#fffaed}.controls{display:flex;flex-direction:row;margin-bottom:15px;border-bottom:2px solid #000;padding-bottom:15px;flex-wrap:wrap}.controls input{flex:1 1 100%}.controls .transpose{margin:0}.controls *{margin:5px;font-size:16px}.sheet{font-family:monospace;white-space:pre;overflow:auto}.artist{font-size:16px;font-weight:700}.song{font-size:14px}.chords{margin-top:15px;font-size:12px}
-/*# sourceMappingURL=main.4e580289.chunk.css.map */
