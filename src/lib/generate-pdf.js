@@ -13,37 +13,31 @@ pdfMake.fonts = {
 const isOdd = i => i % 2 === 1;
 
 function processChords(chords) {
-  let processedChords = [];
-
-  const tabs = chords.split(/\[tab\]|\[\/tab\]/g);
-  const tabsAndChords = tabs.map(w => w.split(/\[ch\]|\[\/ch\]/g));
-  const tabsAndChordsNoBr = tabsAndChords
-    .map(w => w.map(c => c.replace(/\n/g, '')))
-    .filter(w => !(w.length === 1 && w[0].length === 1));
+  let formattedChords = chords;
   
-  for (let i = 0; i < tabsAndChordsNoBr.length; i++) {
-    const tabAndChords = tabsAndChordsNoBr[i];
-    let line;
-    
-    if (Array.isArray(tabAndChords)) {
-      let inline = [];
+  formattedChords = formattedChords.replace(/\[tab\]/g, '');
+  formattedChords = formattedChords.replace(/\[\/tab\]/g, '');
 
-      for (let j = 0; j < tabAndChords.length; j++) {
-        const chord = tabAndChords[j];
+  let processedChords = formattedChords.split(/\n/g).map(w => w.split(/\[ch\]|\[\/ch\]/g));
+
+  for (let i = 0; i < processedChords.length; i += 1) {
+    const processedChord = processedChords[i];
+    
+    if (processedChord.length === 1) {
+      processedChords[i] = processedChord[0];
+    } else {
+      for (let j = 0; j < processedChord.length; j += 1) {
+        const chord = processedChord[j];
         
         if (isOdd(j)) {
-          inline.push({ text: chord, bold: true });
-        } else {
-          inline.push(chord);
+          processedChord[j] = { text: chord, bold: true };
         }
       }
 
-      line = { text: inline };
-    } else {
-      line = tabAndChords;
+      processedChords[i] = {
+        text: processedChord
+      };
     }
-
-    processedChords.push(line);
   }
 
   return processedChords;

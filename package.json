@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "chord-transposer": "^2.2.1",
     "pdfmake": "^0.1.64",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

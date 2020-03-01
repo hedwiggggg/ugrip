@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import generatePdf from './lib/generate-pdf';
+import React, { useState, useCallback, useEffect } from 'react';
+import { transpose } from "chord-transposer";
+
+import generatePDF from './lib/generate-pdf';
 
 import './App.css';
 
@@ -40,7 +42,11 @@ function App() {
   const [artist, setArtist] = useState('');
   const [song, setSong] = useState('');
 
-  const renderChords = useCallback(() => formatChords(chords), [chords]);
+  const [transposeStep, setTransposeStep] = useState(0);
+  const [transposedChords, setTransposedChords] = useState(chords);
+
+  const renderChords = useCallback(() => formatChords(transposedChords), [transposedChords]);
+  const downloadPdf = useCallback(() => generatePDF(artist, song, transposedChords), [artist, song, transposedChords]);
 
   const loadSong = useCallback(() => {
     fetch(`https://cors-anywhere.glitch.me/${uri}`)
@@ -55,7 +61,7 @@ function App() {
 
         const [song_name] = findInObject(storeData, 'song_name');
         const [artist_name] = findInObject(storeData, 'artist_name');
-        const [chords] = findInObject(storeData, 'content');        
+        const [chords] = findInObject(storeData, 'content');
 
         setArtist(artist_name);
         setSong(song_name);
@@ -63,20 +69,37 @@ function App() {
       });
   }, [uri]);
 
-  const donwloadPdf = useCallback(() => generatePdf(artist, song, chords), [artist, song, chords]);
+  useEffect(() => {
+    let transChords = chords.split(/\[ch\]|\[\/ch\]/g);
+
+    for (let i = 1; i <= transChords.length; i += 2) {
+      const chord = transChords[i];
+
+      if (chord) {
+        transChords[i] = `[ch]${transpose(chord).up(transposeStep)}[/ch]`;
+      }
+    }
+
+    setTransposedChords(transChords.join(''));
+  }, [transposeStep, chords]);
 
   return (
     <>
       <div className="controls">
         <input type="text" value={uri} onChange={e => setUri(e.target.value)} />
-        <button onClick={loadSong}>Load Song</button>
-        <button onClick={donwloadPdf}>Download PDF</button>
+        <button onClick={loadSong}>LOAD SONG</button>
+        <button onClick={downloadPdf}>DOWNLOAD PDF</button>
+        <div className="transpose">
+          <button onClick={() => setTransposeStep(transposeStep - 1)}>-</button>
+          TRANSPOSE ({ transposeStep })
+          <button onClick={() => setTransposeStep(transposeStep + 1)}>+</button>
+        </div>
       </div>
 
       <div className="sheet">
         <div className="artist">{artist}</div>
         <div className="song">{song}</div>
-        <div className="chords" dangerouslySetInnerHTML={renderChords(chords)}></div>
+        <div className="chords" dangerouslySetInnerHTML={renderChords(transposedChords)}></div>
       </div>
     </>
   );
