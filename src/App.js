@@ -102,23 +102,25 @@ function App() {
 
       if (chord) {
         try {          
-          const parsedChord = parse(chord, parseOptions);          
+          const parsedChord = parse(chord, parseOptions);
+          const prettyChord = prettyPrint(parsedChord);
+
           const transChord = transpose(parsedChord, transposeStep);
 
           if (simplify) {
             delete transChord.extended;
-            delete transChord.overridingRoot;
-            delete transChord.added;
             delete transChord.suspended;
-          }
+            delete transChord.added;
+            delete transChord.overridingRoot;
+          }          
 
           const prettyTransChord = prettyPrint(transChord);
 
-          const chordsDiff = prettyTransChord.length - chord.length;   
+          const chordsDiff = prettyTransChord.length - prettyChord.length;   
           const chordsDiffPos = Math.abs(chordsDiff);
-  
-          const replacer = chordsDiff >= 0 ? '-'.repeat(chordsDiff) : ' '.repeat(chordsDiffPos);
-  
+
+          const replacer = chordsDiff >= 0 ? '-'.repeat(chordsDiff) : ' '.repeat(chordsDiffPos);          
+
           transChords[i] = `[ch]${prettyTransChord}[/ch]`;
           transChords[i] += replacer;
   
