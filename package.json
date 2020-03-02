@@ -4,10 +4,7 @@
   "private": false,
   "scripts": {
     "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build && mv build/index.html build/632fde2207aa30410dee27ca5cd113ce890aa0a8.html",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "build": "GENERATE_SOURCEMAP=false react-scripts build && mv build/index.html build/632fde2207aa30410dee27ca5cd113ce890aa0a8.html"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,8 +27,5 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0"
-  },
-  "devDependencies": {
-    "gh-pages": "^2.2.0"
   }
 }
