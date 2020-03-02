@@ -2,7 +2,6 @@
   "name": "ugrip",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://hedwiggggg.github.io/ugrip",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
