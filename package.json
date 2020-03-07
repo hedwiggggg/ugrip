@@ -4,7 +4,9 @@
   "private": false,
   "scripts": {
     "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build && mv build/index.html build/632fde2207aa30410dee27ca5cd113ce890aa0a8.html"
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "cors": "node cors-anywhere.js",
+    "serve": "serve build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +29,9 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0"
+  },
+  "devDependencies": {
+    "cors-anywhere": "^0.4.1",
+    "serve": "^11.3.0"
   }
 }
