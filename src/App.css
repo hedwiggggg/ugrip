@@ -29,19 +29,19 @@ body {
   flex: 1 1 auto;
 }
 
+.controls .box-1 > *,
+.controls .box-2 > *,
+.controls .box-3 > * {
+  flex: 1 1 auto;
+}
+
 .controls .box-1 > * {
-  margin: 0 5px !important;
-  flex: 1 1 auto;
+  margin: 0 !important;
 }
 
-.controls .box-2 > * {
-  margin: 0 5px !important;
-  flex: 1 1 auto;
-}
-
+.controls .box-2 > *,
 .controls .box-3 > * {
   margin: 0 5px !important;
-  flex: 1 1 auto;
 }
 
 .sheet {
