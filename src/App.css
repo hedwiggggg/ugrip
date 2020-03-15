@@ -11,6 +11,8 @@ body {
   padding: 20px;
   box-sizing: border-box;
   background: #fffaed;
+  flex: 0 1 750px;
+  width: 100%;
 }
 
 .controls {
@@ -22,23 +24,31 @@ body {
   flex-wrap: wrap;
 }
 
-.controls input {
-  flex: 1 1 100%;
+.controls > * {
+  margin: 15px !important;
+  flex: 1 1 auto;
 }
 
-.controls .transpose {
-  margin: 0;
+.controls .box-1 > * {
+  margin: 0 5px !important;
+  flex: 1 1 auto;
 }
 
-.controls * {
-  margin: 5px;
-  font-size: 16px;
+.controls .box-2 > * {
+  margin: 0 5px !important;
+  flex: 1 1 auto;
+}
+
+.controls .box-3 > * {
+  margin: 0 5px !important;
+  flex: 1 1 auto;
 }
 
 .sheet {
   font-family: monospace;
   white-space: pre;
   overflow: auto;
+  line-height: 16px;
 }
 
 .artist {
