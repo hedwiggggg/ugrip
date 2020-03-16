@@ -132,8 +132,6 @@ function App() {
           }
 
           const parsedChord = parse(chord, parseOptions);
-          const prettyChord = prettyPrint(parsedChord, { naming: tones });
-
           const transChord = transpose(parsedChord, transposeStep);
 
           if (simplify) {
@@ -143,6 +141,7 @@ function App() {
             delete transChord.overridingRoot;
           }
 
+          const prettyChord = prettyPrint(parsedChord, { naming: tones });
           const prettyTransChord = prettyPrint(transChord, { naming: tones });
 
           const chordsDiff = prettyTransChord.length - prettyChord.length;
