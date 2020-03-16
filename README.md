@@ -11,6 +11,13 @@ features:
 
 ---
 
+screenshots:
+
+![Screenshot Smartphone](/doc/screenshot_mobile.png)
+![Screenshot PC](/doc/screenshot_pc.png)
+
+---
+
 Run `yarn build` to build the app, then just serve the build folder.
 
 (with https://www.npmjs.com/package/serve for example, or any other webhost)
