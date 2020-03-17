@@ -2,6 +2,7 @@
   "name": "ugrip",
   "version": "0.1.0",
   "private": false,
+  "license" : "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
