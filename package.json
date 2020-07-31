@@ -2,7 +2,7 @@
   "name": "ugrip",
   "version": "0.1.0",
   "private": false,
-  "license" : "MIT",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
@@ -29,9 +29,9 @@
     "grommet": "^2.11.2",
     "pdfmake": "^0.1.64",
     "polished": "^3.4.4",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
