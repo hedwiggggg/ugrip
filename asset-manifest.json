@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/ugrip/static/css/main.f043d38e.chunk.css",
+    "main.js": "/ugrip/static/js/main.9947a50b.chunk.js",
+    "runtime-main.js": "/ugrip/static/js/runtime-main.2dcc412b.js",
+    "static/js/2.d9d7fc45.chunk.js": "/ugrip/static/js/2.d9d7fc45.chunk.js",
+    "index.html": "/ugrip/index.html",
+    "precache-manifest.f794dc45e7757dc8b4e6188b8a146394.js": "/ugrip/precache-manifest.f794dc45e7757dc8b4e6188b8a146394.js",
+    "service-worker.js": "/ugrip/service-worker.js",
+    "static/js/2.d9d7fc45.chunk.js.LICENSE.txt": "/ugrip/static/js/2.d9d7fc45.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2dcc412b.js",
+    "static/js/2.d9d7fc45.chunk.js",
+    "static/css/main.f043d38e.chunk.css",
+    "static/js/main.9947a50b.chunk.js"
+  ]
+}
