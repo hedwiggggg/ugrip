@@ -26,6 +26,6 @@ Run `yarn build` to build the app, then just serve the build folder.
 
 or run it with docker
 
-`docker build -t ugrip --build-arg CORS_HOST=0.0.0.0 --build-arg CORS_PORT=5001 .`
+`docker build -t ugrip --build-arg CORS_SERVER=http://0.0.0.0:5001/ .`
 
 `docker run -p 5000:5000 -p 5001:5001 ugrip`

@@ -17,10 +17,7 @@ import generatePDF from './lib/generate-pdf';
 
 import './App.css';
 
-const corsProtocol = process.env.REACT_APP_CORS_PROTOCOL || 'https';
-const corsHost = process.env.REACT_APP_CORS_HOST || 'cors-anywhere.glitch.me';
-const corsPort = process.env.REACT_APP_CORS_PORT || '443';
-const corsURI = `${corsProtocol}://${corsHost}:${corsPort}`;
+const corsURI = process.env.REACT_APP_CORS_SERVER;
 
 function formatChords(chords) {
   let formattedChords = chords;
@@ -79,7 +76,7 @@ function App() {
   ]);
 
   const loadSong = useCallback(() => {
-    fetch(`${corsURI}/${uri}`)
+    fetch(`${corsURI}${uri}`)
       .then(res => res.text())
       .then(text => {
         const div = document.createElement('div');
