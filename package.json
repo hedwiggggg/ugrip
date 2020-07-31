@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
-  "homepage": "https://hedwiggggg.github.io/",
+  "homepage": "https://hedwiggggg.github.io/ugrip",
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "cors": "node cors-anywhere.js",
     "serve": "serve build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
